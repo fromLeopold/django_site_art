@@ -1,0 +1,5 @@
+{% extends "layout/base.html" %}
+
+    {% block auth %}
+    <a class="btn" href="{% url "social:begin" "github" %}">Authorization</a>
+    {% endblock %}

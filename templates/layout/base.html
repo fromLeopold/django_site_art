@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Artiwood</title>
+    <link rel="stylesheet" type="text/css" href= "{% static 'style.css' %}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?
+    family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="header__logo">Artiwood</div>
+
+            <nav class="nav">
+                <a class="nav__link" href="#">Art-Works</a>
+                <a class="nav__link" href="#">Authors</a>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="intro">
+    <div class="container">
+        <div class="intro__inner">
+            <h1 class="intro__title">WELCOME TO ARTIWOOD</h1>
+            <h2 class="intro__subtitle">Share your art with the world</h2>
+            {% block auth %}{% endblock %}
+            <h3 class="intro__addition">Please log in to the site through your GitHub</h3>
+        </div>
+    </div>
+</div>
+</body>
+</html>
