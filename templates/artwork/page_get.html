@@ -2,19 +2,22 @@
     {% block title %} <title>Main Page</title> {% endblock %}
 
     {% block main_content %}
-        <div class="intro">
-            <div class="container">
+
+            <div class="boxx">
 
                         {% for entry in entries %}
-                            <div class="center">
+                        <div class="center">
+                            <div class="box_all">
                                 <p>{{ entry.title }}</p>
-                                <img src="{{ entry.picture.url }}" style="height:200px;" alt=''>
-                                <p>{{ entry.author }}</p>
+                                <img src="{{ entry.picture.url }}" style="height:600px;" alt=''>
+                                <p><a class=header__logo" href="{{ entry.author.id }}">{{entry.author}}</a></p>
                             </div>
+                            <BR>
+                        </div>
                         {% endfor %}
 
             </div>
-        </div>
+
 
 
     {% endblock %}
