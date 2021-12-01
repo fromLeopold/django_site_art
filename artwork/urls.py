@@ -5,8 +5,8 @@ from .views import EntryView, AddEntry, registration
 
 urlpatterns = [
 
-    path('accounts/profile/', EntryView.as_view(), name="entry_view"),
+    path('', EntryView.as_view(), name="entry_view"),
     path("create/", AddEntry.as_view(), name="add_entry"),
     path("register/", registration, name="register"),
-    # path("login/", name="login"),
+    path("login/", name="login"),
 ]

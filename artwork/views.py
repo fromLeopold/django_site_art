@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
-from artwork.forms import EntryForm, RegisterForm, SiteLogForm
+from artwork.forms import EntryForm, SiteLogForm, RegisterForm
 from artwork.models import Entry
 
 

@@ -1,22 +1,13 @@
-{% extends 'animals/main_animal.html' %}
-{% block head %}
-    <header class="main-header" style="background-image: url('/media/photo/catty/WHBLpt.jpg')">
-    <h1>Registration</h1>
-</header>
-{% endblock %}
-{% block title %}{% endblock %}
-{% block infomain %}
-    <div class="adding">
+{% extends 'layout/base.html' %}
+{% block title %} <title>Registration</title> {% endblock %}
+
+
+{% block main_content %}
+<div class="intro__addition">
 <form  method ='post'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button> Join us:)</button>
+{% csrf_token %}
+{{ form.as_p }}
+<button> Join us:)</button>
 </form>
 </div>
-
 {% endblock %}
-{% block info %}
-
-
-{% endblock %}
-{% block contact %}{% endblock %}
