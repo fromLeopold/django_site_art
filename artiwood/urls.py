@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 
-from artwork.views import auth, EntryViewSet
+from artwork.views import auth, EntryViewSet, EntryView
 
 router = SimpleRouter()
 
@@ -15,7 +15,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('', include('social_django.urls', namespace='social')),
     path('', auth),
-    path('accounts/profile/', auth)
+    path('accounts/profile/', EntryView.as_view()),
 ]
 
 urlpatterns += router.urls

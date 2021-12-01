@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.viewsets import ModelViewSet
+from django.views.generic.base import View
 
 from artwork.models import Entry
 from artwork.permissions import IsAuthorOrStaffOrReadOnly
@@ -10,6 +11,21 @@ from artwork.serializers import EntrySerializer
 
 def auth(request):
     return render(request, "artwork/oauth.html")
+
+
+class EntryView(View):
+
+    def get(self, request):
+        entries = Entry.objects.all()
+        content = {'entries': entries}
+        return render(request, "artwork/page_get.html", content)
+
+
+def entry_post():
+    pass
+
+
+"""API"""
 
 
 class EntryViewSet(ModelViewSet):
@@ -24,6 +40,3 @@ class EntryViewSet(ModelViewSet):
     def perform_create(self, serializer):
         serializer.validated_data['author'] = self.request.user
         serializer.save()
-
-
-
