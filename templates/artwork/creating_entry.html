@@ -6,6 +6,7 @@
 <div class="form__container">
   <form action="{% url 'add_entry' %}" method="post">
     {% csrf_token %}
+    {% if request.user.is_authenticated %}
     <p>Welcome</p>
     <input type="email" placeholder="Email"><br>
     <input type="password" placeholder="Password"><br>
