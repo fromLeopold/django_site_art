@@ -6,6 +6,7 @@
     {% block title %}{% endblock %}
     <link rel="stylesheet" type="text/css" href= "{% static 'style.css' %}" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?
     family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
@@ -19,8 +20,9 @@
             <div class="header__logo">Artiwood</div>
 
             <nav class="nav">
-                <a class="nav__link" href="#">Art-Works</a>
-                <a class="nav__link" href="#">Authors</a>
+                <a class="nav__link" href="{% url 'entry_view' %}">Art-Works</a>
+                <a class="nav__link" href="{% url 'authorize' %}">Authorization</a>
+                <a class="nav__link" href="{% url 'add_entry' %}">Create</a>
             </nav>
         </div>
     </div>

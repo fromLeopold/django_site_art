@@ -1,12 +1,9 @@
-from django.shortcuts import render
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.viewsets import ModelViewSet
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
+from artwork.forms import EntryForm
 from artwork.models import Entry
-from artwork.permissions import IsAuthorOrStaffOrReadOnly
-from artwork.serializers import EntrySerializer
 
 
 def auth(request):
@@ -21,22 +18,13 @@ class EntryView(View):
         return render(request, "artwork/page_get.html", content)
 
 
-def entry_post():
-    pass
+class AddEntry(PermissionRequiredMixin, View):
+    permission_required = 'blog.add_post'
 
-
-"""API"""
-
-
-class EntryViewSet(ModelViewSet):
-    queryset = Entry.objects.all()
-    serializer_class = EntrySerializer
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    permission_classes = [IsAuthorOrStaffOrReadOnly]
-    filter_fields = ['title']
-    search_fields = ['title', 'description']
-    ordering_fields = ['author', 'title']
-
-    def perform_create(self, serializer):
-        serializer.validated_data['author'] = self.request.user
-        serializer.save()
+    def post(self, request):
+        form = EntryForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.author = self.request.user
+            form.save()
+        return redirect("/")

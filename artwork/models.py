@@ -5,7 +5,7 @@ from django.db import models
 class Entry(models.Model):
     title = models.CharField("Название", max_length=200)
     picture = models.ImageField("Арт-работа", upload_to='pictures/')
-    author = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE, blank=True, null=True)
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
 
@@ -18,7 +18,7 @@ class Entry(models.Model):
 
 
 class Comment(models.Model):
-    owner = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, default=User)
     text = models.TextField("Комментарий")
     entry = models.ForeignKey(Entry, verbose_name="Арт-работа", on_delete=models.CASCADE)
 
@@ -28,4 +28,4 @@ class Comment(models.Model):
     class Meta:
         verbose_name = "Комментарий"
         verbose_name_plural = "Комментарии"
-        
+

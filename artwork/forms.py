@@ -3,12 +3,13 @@ from django import forms
 from .models import Entry, Comment
 
 
-class Comment(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ("text",)
 
-class Entry(forms.ModelForm):
+
+class EntryForm(forms.ModelForm):
     class Meta:
         model: Entry
-        fields = ("title", "picture")
+        fields = ("title", "picture", "descroption")
