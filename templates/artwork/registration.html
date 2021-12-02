@@ -1,7 +1,10 @@
 {% extends 'layout/base.html' %}
 {% block title %} <title>Registration</title> {% endblock %}
-
-
+{% block href %}
+<a class="nav__link" href="{% url 'main' %}">Main Page</a>
+<a class="nav__link" href="{% url 'entry_view' %}">Art-Works</a>
+<a class="nav__link" href="{% url 'login' %}">Login</a>
+{% endblock %}
 {% block main_content %}
 <div class="intro__addition">
 <form  method ='post'>

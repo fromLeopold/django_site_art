@@ -1,0 +1,16 @@
+{% extends 'layout/base.html' %}
+{% block title %}<title>Log in</title>{% endblock %}
+{% block href %}
+<a class="nav__link" href="{% url 'main' %}">Main Page</a>
+<a class="nav__link" href="{% url 'entry_view' %}">Art-Works</a>
+<a class="nav__link" href="{% url 'register' %}">Registration</a>
+{% endblock %}
+{% block main_content %}
+<div class="adding">
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Log in:)</button>
+    </form>
+</div>
+{% endblock %}

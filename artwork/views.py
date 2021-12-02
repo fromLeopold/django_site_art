@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from django.views.generic.base import View
 
-from artwork.forms import EntryForm, SiteLogForm, RegisterForm
+from artwork.forms import EntryForm, SiteLogForm, RegisterForm, CommentForm
 from artwork.models import Entry
 
 
@@ -15,7 +16,7 @@ def registration(request):
             us1 = form.save()
             login(request, us1)
             messages.success(request, "Now you're a part of out community!")
-            return redirect('main_animals')
+            return redirect('login')
         else:
             messages.error(request, "Ooops, something goes wrong:(")
     else:
@@ -29,16 +30,20 @@ def site_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('main_animals')
+            return redirect('entry_view')
     else:
         form = SiteLogForm()
 
-    return render(request, "animals/site_login.html", {"form": form})
+    return render(request, "artwork/login.html", {"form": form})
 
 
 def site_logout(request):
     logout(request)
-    return redirect('main_animals')
+    return redirect('entry_view')
+
+
+def main_artiwood(request):
+    return render(request, 'artwork/main.html', {})
 
 
 class EntryView(View):
@@ -49,13 +54,13 @@ class EntryView(View):
         return render(request, "artwork/page_get.html", content)
 
 
-class AddEntry(PermissionRequiredMixin, View):
-    permission_required = 'blog.add_post'
+class CreateEntry(CreateView):
+    form_class = EntryForm
+    template_name = "artwork/creating_entry.html"
+    success_url = reverse_lazy('entry_view')
 
-    def post(self, request):
-        form = EntryForm(request.POST)
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.author = self.request.user
-            form.save()
-        return redirect("authorize")
+
+class CreateComment(CreateView):
+    form_class = CommentForm
+    template_name = "artwork/add_comment.html"
+    success_url = reverse_lazy('entry_view')

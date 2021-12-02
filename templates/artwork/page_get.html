@@ -1,25 +1,30 @@
 {% extends "layout/base.html" %}
-    {% block title %} <title>Main Page</title> {% endblock %}
+{% block title %} <title>Art-Works</title> {% endblock %}
+{% block href %}
+<a class="nav__link" href="{% url 'main' %}">Main Page</a>
+<a class="nav__link" href="{% url 'logout' %}">Log out</a>
+{% endblock %}
+{% block main_content %}
 
-    {% block main_content %}
+<div class="boxx">
 
-            <div class="boxx">
+    {% for entry in entries %}
+    <div class="center">
+        <div class="box_all">
+            <p>{{ entry.title }}</p>
+            <p>Description: {{ entry.description }}</p>
+            <img src="{{ entry.picture.url }}" style="height:500px;" alt=''>
+            <p>Author: {{ entry.author }}</p>
+            <p><a class="nav__link" href="{% url 'add_comment' %}">Login</a></p>
+        </div>
+        <BR>
+    </div>
+    {% endfor %}
 
-                        {% for entry in entries %}
-                        <div class="center">
-                            <div class="box_all">
-                                <p>{{ entry.title }}</p>
-                                <img src="{{ entry.picture.url }}" style="height:500px;" alt=''>
-                                <p><a class=header__logo" href="{{ entry.author.id }}">{{entry.author}}</a></p>
-                            </div>
-                            <BR>
-                        </div>
-                        {% endfor %}
-
-            </div>
+</div>
 
 
+{% endblock %}
 
-    {% endblock %}
-
-    {% block some_script %} <script src="/static/get.js"></script> {% endblock %}
+{% block some_script %}
+<script src="/static/get.js"></script> {% endblock %}

@@ -20,10 +20,7 @@
             <div class="header__logo">Artiwood</div>
 
             <nav class="nav">
-                <a class="nav__link" href="{% url 'entry_view' %}">Art-Works</a>
-                <a class="nav__link" href="{% url 'register' %}">Registration</a>
-                <a class="nav__link" href="{% url 'login' %}">Login</a>
-                <a class="nav__link" href="{% url 'add_entry' %}">Create</a>
+                {% block href %}{% endblock %}
             </nav>
         </div>
     </div>

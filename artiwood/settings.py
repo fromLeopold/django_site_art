@@ -82,14 +82,6 @@ DATABASES = {
     }
 }
 
-AUTHENTICATION_BACKENDS = (
-
-    'social_core.backends.github.GithubOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-SOCIAL_AUTH_GITHUB_KEY = '2e9b3d35616c6519f6a8'
-SOCIAL_AUTH_GITHUB_SECRET = '9749d1a8bffb6b75bdd66b057829854c0fe4ca9b'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -137,13 +129,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
-    'DEFAULT_PARSER_CLASSES': (
-        'rest_framework.parsers.JSONParser',
-    )
-}
+

@@ -18,7 +18,7 @@ class Entry(models.Model):
 
 
 class Comment(models.Model):
-    owner = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, default=User)
+    owner = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE)
     text = models.TextField("Комментарий")
     entry = models.ForeignKey(Entry, verbose_name="Арт-работа", on_delete=models.CASCADE)
 
